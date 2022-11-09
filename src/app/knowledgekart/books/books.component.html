@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>KnowledgeKart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/style.css">
+
+    <!-- script
+		================================================== -->
+    <script src="../../../assets/js/modernizr.js"></script>
+
+</head>
+
+<body>
+
+    <div id="header-wrap">
+
+        <div class="top-content">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="main-logo">
+                            <a href="index.html"><img src="../../../assets/images/new-logo.png" alt="logo"></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 right-element" >
+                        <div>
+                        <a class="user-account for-buy"  padding="520px"  class="icon icon-user" *ngIf="userLoggedIn">{{loggedInUser}}</a>
+                        <a routerLink="/cart"  padding="520px" routerLinkActive="active" class="cart for-buy" *ngIf="bookSelected" ><i class="icon icon-clipboard"></i><span>Cart</span></a>
+                    </div>
+                    </div>
+                    <!--top-right-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--top-content-->
+    <section id="popular-books" class="bookshelf">
+        <div class="container">
+            <div class="center" *ngIf="customerEligible"><h3 class="blink blink-two">Congratulations! You are eligible for a {{discount.percentDiscount}}% discount on checkout!</h3></div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="section-header align-center">
+                        <h2 class="section-title">POPULAR BOOKS</h2>
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="all-genre" data-tab-content class="active">
+                            <div class="row">
+                                <div *ngFor="let order of bookOrders">
+                                    <div class="col-md-3">
+                                        <figure class="product-style">
+                                            <img src="../../../assets/images/{{order.book.isbn13}}.png"
+                                                alt="{{order.book.name}}" class="product-item"/>
+                                            <figcaption>
+                                                <h3>{{order.book.name}}</h3>
+                                                <div class="item-price">${{order.book.price}}</div>
+                                            </figcaption>
+                                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart"
+                                                 (click)="addToCart(order)">Add to
+                                                Cart</button>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--inner-tabs-->
+
+            </div>
+        </div>
+    </section>
+
+    <script src="../../../assets/js/jquery-1.11.0.min.js"></script>
+    <script src="../../../assets/js/plugins.js"></script>
+    <script src="../../../assets/js/script.js"></script>
+
+</body>
+
+</html>

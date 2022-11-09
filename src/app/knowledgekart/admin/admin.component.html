@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>KnowledgeKart</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/style.css">
+
+	<!-- script
+		================================================== -->
+	<script src="../../../assets/js/modernizr.js"></script>
+</head>
+
+<body>
+
+
+	<div id="header-wrap">
+
+		<div class="top-content">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-2">
+						<div class="main-logo">
+							<a href="index.html"><img src="../../../assets/images/new-logo.png" alt="logo"></a>
+						</div>
+					</div>
+
+					<div class="col-md-10">
+
+						<nav id="navbar">
+							<div class="main-menu stellarnav">
+								<ul class="menu-list">
+									<li class="menu-item"><a (click)="logout()"  class="user-account-logout"><i class="icon icon-user">
+										</i><span>Logout</span></a></li>
+								</ul>
+							</div>
+						</nav>
+
+					</div>
+					<!--top-right-->
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!--top-content-->
+	<!--header-wrap-->
+
+	<section class="padding-xsmall">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="page-title">Welcome</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="add-discount" class="padding-xsmall">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<section class="discount  mb-5">
+						<h3>Add Discounts</h3>
+						<form method="post" #discount = "ngForm" class="form-group mt-3" (ngSubmit) = "onClickSubmit(discount)">
+
+							<div class="row">
+								<div class="col-md-6">
+									<input class="u-full-width" type="text" name="discountCode" id="discount-code"
+                                    ngModel class="form-control mb-4 mr-4" placeholder="Add New Discount Code">
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<input class="u-full-width" type="text" name="discountPercent" id="discount-percent-applied"
+                                    ngModel class="form-control mb-4 mr-4" placeholder="Percentage Discount">
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<input class="u-full-width" type="text" name="transactionMultiplier" id="set-nth-term"
+                                    ngModel class="form-control mb-4 mr-4" placeholder="Apply Discount for nth Transaction">
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<input class="a btn btn-rounded btn-large btn-outline-dark" type="submit"  value="Submit">
+								</div>
+							</div>
+                            <div *ngIf="discountSaved">Discount saved successfully!<h4></h4></div>
+                            <div *ngIf="errorSavingDiscount">Error saving discount!<h4></h4></div>
+						</form>
+					</section>
+
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+
+	<section id="view-report" class="padding-xsmall">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<section class="view-report  mb-5">
+						<h3>View Reports</h3>
+						<form method="post" [formGroup]="reportForm" class="form-group mt-3" (ngSubmit) = "onSubmit()">
+
+                              <select class="select" matNativeControl (change)="changeReport($event)" required>
+                                <option value="orderCountByDiscountCode" selected>Order Count by Discount Code</option>
+                                <option value="orderDetails">Order Details</option>
+                                <option value="orderCountByBook">Order Count by Book</option>
+                              </select>
+
+							<div class="row">
+								<div class="col-md-6">
+									<input class="a btn btn-rounded btn-large btn-outline-dark" type="submit" value="Submit">
+								</div>
+							</div>
+						</form>
+
+						<div class="container">  
+    						<div *ngIf="reportDataReceived && reportName === 'orderDetails'">
+							<table class="table table-striped">  
+							  <thead>  
+								  <tr>  
+									<th>ORDER ID</th>  
+									<th>DATE CREATED</th>  
+									<th>DISCOUNT CODE</th>  
+									<th>IS_DISCOUNT_APPLIED</th> 
+									<th>BOOOK ID</th> 
+									<th>BOOK NAME</th> 
+									<th>BOOK ISBN13</th> 
+									<th>QUANTITY</th> 
+									<th>TOTAL PRICE</th>
+									<th>STATUS</th>  
+								  </tr>  
+							  </thead>  
+							  <tbody>  
+								<tr *ngFor="let order of reportData">  
+								  <td>{{ order.ORDER_ID }}</td>  
+								  <td>{{ order.DATE_CREATED }}</td>  
+								  <td>{{ order.DISCOUNT_CODE }}</td>  
+								  <td>{{ order.IS_DISCOUNT_APPLIED }}</td>  
+								  <td>{{ order.ID }}</td>  
+								  <td>{{ order.NAME }}</td>  
+								  <td>{{ order.ISBN13 }}</td>  
+								  <td>{{ order.QUANTITY }}</td>  
+								  <td>{{ order.TOTAL}}</td> 
+								  <td>{{ order.STATUS}}</td>  
+
+								</tr>  
+							  </tbody>  
+							</table>  
+							</div>
+
+							<div *ngIf="reportDataReceived && reportName === 'orderCountByDiscountCode'">
+								<table class="table table-striped">  
+								  <thead>  
+									  <tr>  
+										<th>ORDERS PLACED</th>  
+										<th>DISCOUNT CODE</th>  
+									  </tr>  
+								  </thead>  
+								  <tbody>  
+									<tr *ngFor="let order of reportData">  
+									  <td>{{ order.COUNT }}</td>  
+									  <td>{{ order.DISCOUNT_CODE }}</td>   
+	
+									</tr>  
+								  </tbody>  
+								</table>  
+								</div>
+
+								<div *ngIf="reportDataReceived && reportName === 'orderCountByBook'">
+									<table class="table table-striped">  
+									  <thead>  
+										  <tr>  
+											<th>BOOKS SOLD</th> 
+											<th>BOOOK ID</th> 
+									<th>BOOK NAME</th> 
+									<th>BOOK ISBN13</th> 
+										  </tr>  
+									  </thead>  
+									  <tbody>  
+										<tr *ngFor="let order of reportData">  
+											<td>{{ order.COUNT }}</td> 
+											<td>{{ order.ID }}</td>  
+											<td>{{ order.NAME }}</td>  
+											<td>{{ order.ISBN13 }}</td>  
+										</tr>  
+									  </tbody>  
+									</table>  
+									</div>
+						  </div>  
+					</section>
+
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	<script src="../../../assets/js/jquery-1.11.0.min.js"></script>
+	<script src="../../../assets/js/plugins.js"></script>
+	<script src="../../../assets/js/script.js"></script>
+
+</body>
+
+</html>

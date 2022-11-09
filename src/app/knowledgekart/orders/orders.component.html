@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>KnowledgeKart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="../../../assets/style.css">
+
+    <!-- script
+		================================================== -->
+    <script src="../../../assets/js/modernizr.js"></script>
+
+</head>
+
+<body>
+
+    <div id="header-wrap">
+
+        <div class="top-content">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="main-logo">
+                            <a href="index.html"><img src="../../../assets/images/new-logo.png" alt="logo"></a>
+                        </div>
+                    </div>
+
+                    <nav id="navbar">
+                        <div class="main-menu stellarnav">
+                            <ul class="menu-list">
+                                <li class="menu-item"><a (click)="logout()" class="user-account-logout" *ngIf="userLoggedIn"><i
+                                            class="icon icon-user">
+                                        </i><span>Logout</span></a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!--top-right-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--top-content-->
+
+<section class="cart align-center">
+<h2 class="text-center">ORDER</h2>
+<ul class="text-left">
+    <li *ngFor="let order of orders.bookOrders">
+        {{ order.book.name }} - ${{ order.book.price }} x {{ order.quantity}} pcs.
+    </li>
+</ul>
+<h3>Total amount: ${{ total }}</h3>
+
+<button class="a btn btn-rounded btn-medium btn-outline-dark" (click)="pay()" *ngIf="!paid">Pay</button>
+<div class="alert alert-success" role="alert" *ngIf="paid">
+    <strong>Congratulation!</strong> You successfully made the order.
+</div>
+</section>
+<script src="../../../assets/js/jquery-1.11.0.min.js"></script>
+<script src="../../../assets/js/plugins.js"></script>
+<script src="../../../assets/js/script.js"></script>
+
+</body>
+
+</html>

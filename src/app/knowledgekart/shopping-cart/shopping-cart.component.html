@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>KnowledgeKart</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link rel="stylesheet" type="text/css" href="../../../assets/css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets/icomoon/icomoon.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets/css/vendor.css">
+	<link rel="stylesheet" type="text/css" href="../../../assets/style.css">
+
+	<!-- script
+		================================================== -->
+	<script src="../../../assets/js/modernizr.js"></script>
+
+</head>
+
+<body>
+
+	<div id="header-wrap">
+
+		<div class="top-content">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-2">
+						<div class="main-logo">
+							<a href="index.html"><img src="../../../assets/images/new-logo.png" alt="logo"></a>
+						</div>
+					</div>
+
+					<div class="col-md-10">
+
+						<nav id="navbar">
+							<div class="main-menu stellarnav">
+								<ul class="menu-list">
+									<li class="menu-item"><a (click)="logout()" class="user-account-logout"
+											*ngIf="userLoggedIn"><i class="icon icon-user">
+											</i><span>Logout</span></a></li>
+								</ul>
+							</div>
+						</nav>
+
+					</div>
+					<!--top-right-->
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!--top-content-->
+
+	<section class=" align-center padding-small">
+		<div class="container" height="">
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="page-title">Cart</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="my-cart" class="align-center padding-small">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-0">
+					<section class="align-center" padding-left="2em">
+						<div class="table-wrap">
+							<table class="table align-center">
+								<thead class="thead-primary">
+									<tr>
+										<th>
+											<h3>Product</h3>
+										</th>
+										<th>
+											<h3>Price</h3>
+										</th>
+										<th>
+											<h3>Quantity</h3>
+										</th>
+										<th>
+											<h3>Total</h3>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="alert" role="alert" *ngFor="let order of orders.bookOrders">
+										<td>
+											<div class="email">
+												<span>{{order.book.name}}</span>
+											</div>
+										</td>
+										<td>${{order.book.price}}</td>
+										<td class="quantity">
+											<div class="input-group">
+											<input type="text" name="quantity"
+												class="form-control mb-4 mr-4" [(ngModel)]="order.quantity" value="{{order.quantity}}" min="1" max="100">
+										</div>
+										</td>
+										<td>{{order.book.price * order.quantity}}</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-0">
+					<input class="a btn btn-rounded btn-large btn-outline-dark" routerLink="/orders"
+						routerLinkActive="active" (click)="finishOrder()" [disabled]="orders.bookOrders.length == 0"
+						type="submit" value="Checkout">
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+	<script src="../../../assets/js/jquery-1.11.0.min.js"></script>
+	<script src="../../../assets/js/plugins.js"></script>
+	<script src="../../../assets/js/script.js"></script>
+
+</body>
+
+</html>
