@@ -2,6 +2,8 @@
 
 Ecommerce application
 
+Please contact me in case of any queries.
+
 *Angular application can be packaged together with Spring boot to run as a single unit. However, some html/js dependencies are not loading when the application is run, causing separate start up for both the applications.*
 
 
