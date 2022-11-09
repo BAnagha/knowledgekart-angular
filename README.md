@@ -46,6 +46,15 @@ npm start
 
 The application is currently pointing to AWS EBS backend instance.
 
+Application can be accessed at http://knowledgekartbackend-env.eba-dun3bitw.us-east-2.elasticbeanstalk.com/knowledgekart/swagger-ui/index.html
+
+H2 Console can be accessed at http://knowledgekartbackend-env.eba-dun3bitw.us-east-2.elasticbeanstalk.com/knowledgekart/h2-console
+
+Credential to login to database:
+username: dbadmin
+passwordl: password
+datasource url: jdbc:h2:mem:knowledgekart
+
 
 Seed data is already available on the instance from the testing.
 
