@@ -37,11 +37,11 @@
                         </div>
                     </div>
 
-                    <div class="col-md-9 right-element" >
+                    <div class="col-md-7 right-element" >
                         <div>
-                        <a class="user-account for-buy"  padding="520px"  class="icon icon-user" *ngIf="userLoggedIn">{{loggedInUser}}</a>
+                        <a class="user-account for-buy"  padding="520px"  class="icon icon-user" (click)="logout()" *ngIf="userLoggedIn">{{loggedInUser}}</a>
                         <a routerLink="/cart"  padding="520px" routerLinkActive="active" class="cart for-buy" *ngIf="bookSelected" ><i class="icon icon-clipboard"></i><span>Cart</span></a>
-                    </div>
+                        </div>
                     </div>
                     <!--top-right-->
                 </div>

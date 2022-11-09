@@ -136,5 +136,9 @@ export class BooksComponent implements OnInit {
       this.bookSelected = false;
   }
 
+  logout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl("/login");
+  }
 
 }

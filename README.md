@@ -23,7 +23,7 @@ mvn clean install
 ```bash
 mvn spring-boot:run
 ```
-The port is configured to be 5000.
+The application is deployed to AWS EBS.
 
 ## Running the Angular Application
 ### System Requirements
@@ -44,6 +44,10 @@ npm install
 npm start
 ```
 
+The application is currently pointing to AWS EBS backend instance.
+
+
+Seed data is already available on the instance from the testing.
 
 ### Login details:
  1. username ~ password

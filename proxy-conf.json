@@ -1,9 +1,9 @@
 {
     "/knowledgekart/*": {
-      "target": "http://127.0.0.1:8080",
+      "target": "http://knowledgekartbackend-env.eba-dun3bitw.us-east-2.elasticbeanstalk.com",
       "secure": false,
       "changeOrigin": true,
       "logLevel": "debug",
-      "pathRewrite": {"^/knowledgekart" : "http://127.0.0.1:8080/knowledgekart"}
+      "pathRewrite": {"^/knowledgekart" : "http://knowledgekartbackend-env.eba-dun3bitw.us-east-2.elasticbeanstalk.com/knowledgekart"}
     }
 }
